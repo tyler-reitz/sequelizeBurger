@@ -1,20 +1,10 @@
-const orm = require('../config/orm')
-const table = 'burgers'
+module.exports = function (sequelize, DataTypes) {
+  const Burgers = sequelize.define('Burgers', {
+    burger_name: DataTypes.STRING,
+    devoured: DataTypes.BOOLEAN
+  }, {
+    timestamps: false  
+  })
 
-const burgers = {
-  
-  get(cb) {
-    orm.selectAll(table, cb)
-  },
-  
-  add(name, cb) {
-    orm.insertOne(table, name, cb)
-  },
-
-  eat(name, cb) {
-    orm.updateOne(table, name, cb)
-  }
-  
+  return Burgers
 }
-
-module.exports = burgers
